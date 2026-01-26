@@ -20,7 +20,7 @@ export function App() {
                 email="ulan@example.com"
                 linkedInUrl="https://www.linkedin.com/in/ulan"
                 githubUrl="https://github.com/ulan"
-                imageUrl="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=256&h=256&fit=crop&auto=format"
+                imageUrl="https://media.licdn.com/dms/image/v2/C5603AQHFYmtLd6eCrw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1616700061492?e=1770854400&v=beta&t=v2kzt6OltSRMivgRC1tZ3fonYMntiWsNu5F2MmdyvQ4"
               />
             </div>
             <div className="md:col-span-3 col-span-4 overflow-y-auto border ">
