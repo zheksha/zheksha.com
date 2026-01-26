@@ -13,7 +13,7 @@ export function App() {
         <Header />
         <main className="flex-1 overflow-hidden py-6">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-4 gap-4 px-6 py-4">
-            <div className="md:col-span-1 col-span-4 self-start sticky top-24">
+            <div className="md:col-span-1 col-span-4">
               <ProfileCard
                 name="Ulan Z."
                 title="Developer"

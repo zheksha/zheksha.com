@@ -21,7 +21,7 @@ function ProfileCard({
   imageUrl,
 }: ProfileCardProps) {
   return (
-    <Card className="bg-background/60">
+    <Card className="bg-background/60 relative">
       <CardHeader className="gap-4">
         <div className="flex items-center gap-4">
           <img
