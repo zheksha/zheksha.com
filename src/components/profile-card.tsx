@@ -43,13 +43,13 @@ function ProfileCard({
         </div>
       </CardHeader>
       <CardContent className="space-y-2 text-sm">
-        <a className="block text-foreground hover:underline" href={`mailto:${email}`}>
+        <a className="block text-foreground hover:underline" target="_blank" href={`mailto:${email}`}>
           {email}
         </a>
-        <a className="block text-foreground hover:underline" href={linkedInUrl}>
+        <a className="block text-foreground hover:underline" href={linkedInUrl} target="_blank">
          LinkedIn
         </a>
-        <a className="block text-foreground hover:underline" href={githubUrl}>
+        <a className="block text-foreground hover:underline" href={githubUrl} target="_blank">
           GitHub
         </a>
       </CardContent>

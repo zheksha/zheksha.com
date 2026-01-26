@@ -17,16 +17,16 @@ export function App() {
               <ProfileCard
                 name="Ulan Z."
                 title="Developer"
-                email="ulan@example.com"
-                linkedInUrl="https://www.linkedin.com/in/ulan"
-                githubUrl="https://github.com/ulan"
+                email="zheksha@gmail.com"
+                linkedInUrl="https://www.linkedin.com/in/zheksha/"
+                githubUrl="https://github.com/zheksha"
                 imageUrl="https://media.licdn.com/dms/image/v2/C5603AQHFYmtLd6eCrw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1616700061492?e=1770854400&v=beta&t=v2kzt6OltSRMivgRC1tZ3fonYMntiWsNu5F2MmdyvQ4"
               />
             </div>
             <div className="md:col-span-3 col-span-4 overflow-y-auto border ">
               <Card className="bg-background/60 w-full">
                 <CardHeader>
-                  <CardTitle>Experience</CardTitle>
+                  <CardTitle>Experience<span className="text-muted-foreground"> | Work & Impact</span></CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Experience />
