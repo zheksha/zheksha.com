@@ -19,7 +19,7 @@ export function Experience() {
   return (
     <div className="space-y-8">
       {resumeData.experience.map((item, index) => {
-        const showLine = index < resumeData.experience.length - 1
+        const showLine = index < resumeData.experience.length
 
         return (
           <div key={item.id} className="relative">
@@ -47,36 +47,29 @@ export function Experience() {
                 </div>
 
                 {item.achievements.length > 0 && (
-                  <div className="mt-4 space-y-2">
-                    {item.achievements.map((achievement, achievementIndex) => (
-                      <div key={`${item.id}-${achievementIndex}`} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground" />
-                        <span className="text-sm text-muted-foreground">{achievement}</span>
-                      </div>
-                    ))}
-                    {item.highlights && item.highlights.length > 0 && (
-                      <div className="space-y-2">
-                        <div className="flex items-start gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground" />
-                          <span className="text-sm text-muted-foreground">
-                            {item.hightlightsMessage}
-                          </span>
-                        </div>
-                        <ul className="ml-5 space-y-2 border-l border-border/60 pl-4 text-sm text-muted-foreground">
-                          {item.highlights.map((highlight) => (
-                            <li key={highlight.name} className="flex items-start gap-2">
-                              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground" />
-                              <span>
+                  <div className="mt-4 space-y-3">
+                    <ul className="list-disc space-y-2 pl-4 text-sm text-muted-foreground">
+                      {item.achievements.map((achievement, achievementIndex) => (
+                        <li key={`${item.id}-${achievementIndex}`} className="pl-1">
+                          {achievement}
+                        </li>
+                      ))}
+                      {item.highlights && item.highlights.length > 0 && (
+                        <li className="pl-1">
+                          The most prominent work includes:
+                          <ul className="mt-2 list-[circle] space-y-2 pl-6">
+                            {item.highlights.map((highlight) => (
+                              <li key={highlight.name}>
                                 <span className="font-medium text-foreground">
                                   {highlight.name}
                                 </span>
                                 {highlight.description ? `, ${highlight.description}` : ""}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                      )}
+                    </ul>
                   </div>
                 )}
 
