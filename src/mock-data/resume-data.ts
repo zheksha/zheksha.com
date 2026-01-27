@@ -1,3 +1,7 @@
+import BmoLogo from "@/assets/BMOLogo.svg"
+import CaterpillarLogo from "@/assets/CaterpillarLogo.svg"
+import PeaksoftLogo from "@/assets/PeaksoftLogo.svg"
+
 // TypeScript Interface
 export interface Resume {
   personalInfo: {
@@ -17,6 +21,7 @@ export interface Experience {
   id: string;
   title: string;
   company: string;
+  logo?: string;
   location: string;
   employmentType: "Contract" | "FTE";
   startDate: string; // YYYY-MM format
@@ -78,6 +83,7 @@ export const resumeData: Resume = {
       id: "bmo-2025",
       title: "SR. UI ENGINEER",
       company: "BMO",
+      logo: BmoLogo,
       location: "Chicago, IL",
       employmentType: "Contract",
       startDate: "2025-07",
@@ -124,6 +130,7 @@ export const resumeData: Resume = {
       id: "caterpillar-2021",
       title: "SOFTWARE ENGINEER",
       company: "Caterpillar Inc.",
+      logo: CaterpillarLogo,
       location: "Chicago, IL (hybrid)",
       employmentType: "FTE",
       startDate: "2021-05",
@@ -164,6 +171,7 @@ export const resumeData: Resume = {
       id: "echo-2019",
       title: "FRONTEND DEVELOPER",
       company: "Peaksoft - Echo Global Logistics project",
+      logo: PeaksoftLogo,
       location: "Chicago, IL",
       employmentType: "Contract",
       startDate: "2019-04",
@@ -189,6 +197,7 @@ export const resumeData: Resume = {
       id: "carlease-2017",
       title: "FRONTEND DEVELOPER",
       company: "Peaksoft - CarLease project",
+      logo: PeaksoftLogo,
       location: "Chicago, IL",
       employmentType: "Contract",
       startDate: "2017-05",

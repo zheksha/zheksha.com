@@ -31,7 +31,16 @@ export function Experience() {
               <Card className="border-border/60 bg-card/80 p-6 transition-colors duration-200 hover:border-foreground/50">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold text-foreground">{item.company}</h3>
+                    <div className="flex items-center gap-3">
+                      {item.logo && (
+                        <img
+                          src={item.logo}
+                          alt={`${item.company} logo`}
+                          className="h-6 rounded-xs border border-border/60 bg-background  object-contain"
+                        />
+                      )}
+                      <h3 className="text-lg font-semibold text-foreground">{item.company}</h3>
+                    </div>
                     <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                       <span className="font-medium text-foreground">{item.title}</span>
                       <span className="text-muted-foreground/60">•</span>
