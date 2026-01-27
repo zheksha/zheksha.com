@@ -83,7 +83,7 @@ export const resumeData: Resume = {
     {
       id: "bmo-2025",
       title: "SR. UI ENGINEER",
-      company: "BMO",
+      company: "BMO Capital Markets",
       logo: BmoLogo,
       location: "Chicago, IL",
       employmentType: "Contract",
