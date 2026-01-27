@@ -56,7 +56,7 @@ export const resumeData: Resume = {
     location: "Chicago, IL",
   },
   objective:
-    "A seasoned software engineer with 8 years of experience in developing performant data-driven enterprise apps. Dedicated to contributing to innovative, collaborative teams and advancing organizational goals through exceptional engineering practices. Targeting permanent roles within visible/impactful projects.",
+    "I design and build scalable, high-performance front-end systems for complex enterprise platforms. Using React, TypeScript, and cloud-integrated solutions, I turn business requirements into fast, accessible, and maintainable user experiences that deliver real value and ship with confidence.",
   technicalSkills: [
     "React.js",
     "TypeScript",

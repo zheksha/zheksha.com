@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils"
 
+import { PrivacyDrawer } from "./privacy-drawer"
+
 type FooterProps = React.ComponentProps<"footer">
 
 function Footer({ className, ...props }: FooterProps) {
@@ -8,9 +10,7 @@ function Footer({ className, ...props }: FooterProps) {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} Zheksha</span>
         <div className="flex items-center gap-4">
-          <a className="hover:text-foreground transition-colors" href="#privacy">
-            Privacy
-          </a>
+          <PrivacyDrawer />
           <a className="hover:text-foreground transition-colors" href="#terms">
             Terms
           </a>
