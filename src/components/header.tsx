@@ -18,7 +18,7 @@ function Header({ className, ...props }: HeaderProps) {
           <span className="text-sm text-muted-foreground">dev</span>
         </div>
         <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a className="hover:text-foreground transition-colors" href="#work">
+          {/* <a className="hover:text-foreground transition-colors" href="#work">
             Work
           </a>
           <a className="hover:text-foreground transition-colors" href="#about">
@@ -26,7 +26,7 @@ function Header({ className, ...props }: HeaderProps) {
           </a>
           <a className="hover:text-foreground transition-colors" href="#contact">
             Contact
-          </a>
+          </a> */}
           <ModeToggle />
         </nav>
       </div>

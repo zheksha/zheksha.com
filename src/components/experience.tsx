@@ -85,7 +85,11 @@ export function Experience() {
                 {item.technologies.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {item.technologies.map((tech) => (
-                      <Badge key={`${item.id}-${tech}`} variant="secondary" className="rounded-full">
+                      <Badge
+                        key={`${item.id}-${tech}`}
+                        variant="secondary"
+                        className="rounded-full"
+                      >
                         {tech}
                       </Badge>
                     ))}

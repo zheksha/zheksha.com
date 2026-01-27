@@ -8,7 +8,7 @@ import globals from "globals"
 import tseslint from "typescript-eslint"
 
 export default defineConfig([
-  globalIgnores(["dist", "node_modules", "coverage", ".vite"]),
+  globalIgnores(["dist", "node_modules", "coverage", ".vite", "src/components/ui/**"]),
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     extends: [

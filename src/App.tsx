@@ -16,7 +16,6 @@ export function App() {
             <div className="md:col-span-1 col-span-4">
               <ProfileCard
                 name="Ulan Z."
-                title="Developer"
                 email="zheksha@gmail.com"
                 linkedInUrl="https://www.linkedin.com/in/zheksha/"
                 githubUrl="https://github.com/zheksha"
@@ -26,14 +25,15 @@ export function App() {
             <div className="md:col-span-3 col-span-4 overflow-y-auto border ">
               <Card className="bg-background/60 w-full">
                 <CardHeader>
-                  <CardTitle>Experience<span className="text-muted-foreground"> | Work & Impact</span></CardTitle>
+                  <CardTitle>
+                    Experience<span className="text-muted-foreground"> | Work & Impact</span>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Experience />
                 </CardContent>
                 <CardFooter className="text-xs text-muted-foreground">View All</CardFooter>
               </Card>
-
             </div>
           </div>
         </main>
