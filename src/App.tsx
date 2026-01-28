@@ -8,7 +8,6 @@ import { ProfileCard } from "@/components/profile-card"
 import { Experience } from "./components/experience"
 import { Summary } from "./components/summary"
 import { ThemeProvider } from "./components/theme-provider/theme-provider"
-import { Card } from "./components/ui/card"
 
 export function App() {
   const scrollWrapperRef = useRef<HTMLDivElement>(null)
@@ -53,7 +52,7 @@ export function App() {
                 imageUrl="https://media.licdn.com/dms/image/v2/C5603AQHFYmtLd6eCrw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1616700061492?e=1770854400&v=beta&t=v2kzt6OltSRMivgRC1tZ3fonYMntiWsNu5F2MmdyvQ4"
               />
             </aside>
-            <section className="md:col-span-3  border-y">
+            <section className="md:col-span-3 border-y">
               <div ref={scrollWrapperRef} className="max-h-[calc(100dvh-11rem)] overflow-hidden">
                 <div ref={scrollContentRef} className="space-y-6">
                   <Summary />
