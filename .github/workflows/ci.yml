@@ -25,7 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Unit tests
-        run: npm run test
+        run: npm run test -- --reporter=default --reporter=junit --outputFile=test-results/unit-junit.xml
 
       - name: Build
         run: npm run build
@@ -35,3 +35,19 @@ jobs:
 
       - name: E2E tests
         run: npm run e2e
+
+      - name: Upload unit test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-report
+          path: test-results/unit-junit.xml
+
+      - name: Upload e2e reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-report
+          path: |
+            test-results/e2e-junit.xml
+            playwright-report
