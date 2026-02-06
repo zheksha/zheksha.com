@@ -1,4 +1,4 @@
 [build]
-command = "npm run build"
+command = "VITE_GIT_COMMIT_HASH=$COMMIT_REF VITE_APP_VERSION=$npm_package_version npm run build"
 publish = "dist"
 

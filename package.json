@@ -1,9 +1,12 @@
 {
   "name": "zheksha.com",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/update-env.cjs",
+    "prebuild": "node scripts/update-env.cjs",
+    "prepreview": "node scripts/update-env.cjs",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
