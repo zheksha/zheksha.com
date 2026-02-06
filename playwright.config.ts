@@ -2,6 +2,7 @@ import { defineConfig } from "@playwright/test"
 
 export default defineConfig({
   testDir: "e2e",
+  reporter: [["html", { open: "never" }], ["junit", { outputFile: "test-results/e2e-junit.xml" }]],
   use: {
     baseURL: process.env.BASE_URL || "http://localhost:4173",
   },
