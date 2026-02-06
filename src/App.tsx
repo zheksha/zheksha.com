@@ -53,7 +53,7 @@ export function App() {
               />
             </aside>
             <section className="md:col-span-3 border-y">
-              <div ref={scrollWrapperRef} className="max-h-[calc(100dvh-11rem)] overflow-hidden">
+              <div ref={scrollWrapperRef} className="max-h-[calc(100dvh-11.75rem)] overflow-hidden">
                 <div ref={scrollContentRef} className="space-y-3">
                   <Summary />
                   <Experience />
