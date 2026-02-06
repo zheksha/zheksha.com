@@ -23,8 +23,8 @@ jobs:
 
       - name: Set build metadata env
         run: |
-          echo "VITE_GIT_COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
-          echo "VITE_APP_VERSION=$(node -p \"require('./package.json').version\")" >> $GITHUB_ENV
+          echo "VITE_GIT_COMMIT_HASH=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "VITE_APP_VERSION=$(node -p 'require("./package.json").version')" >> "$GITHUB_ENV"
 
       - name: Lint
         run: npm run lint
