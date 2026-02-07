@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 
 import { Badge } from "./ui/badge"
 import { BorderBeam } from "./ui/border-beam"
+import { ContactDrawer } from "./contact-drawer"
 
 type ProfileCardProps = {
   name: string
@@ -47,7 +48,7 @@ function ProfileCard({ name, email, linkedInUrl, githubUrl, imageUrl }: ProfileC
         </a>
       </CardContent>
       <CardFooter className="text-xs text-muted-foreground">
-        <span>Get in touch</span>
+        <ContactDrawer />
       </CardFooter>
       <BorderBeam />
     </Card>

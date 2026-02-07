@@ -42,7 +42,7 @@ export function App() {
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <Header />
         <main className="flex-1 overflow-hidden py-1">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-3 px-6 py-2 md:grid-cols-4">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-3 px-6 py-2 md:grid-cols-4">
             <aside className="md:col-span-1 md:sticky ">
               <ProfileCard
                 name="Ulan Z."

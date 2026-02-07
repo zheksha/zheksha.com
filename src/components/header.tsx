@@ -12,7 +12,7 @@ function Header({ className, ...props }: HeaderProps) {
       )}
       {...props}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
         <div className="flex flex-col leading-tight">
           <span className="text-md font-semibold tracking-wide">ULAN Z.</span>
           <span className="text-sm text-muted-foreground">dev</span>
