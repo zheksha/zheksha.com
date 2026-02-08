@@ -87,20 +87,11 @@ export function ContactDrawer() {
 
     setStatus("submitting")
 
-    const body = new URLSearchParams({
-      "form-name": "contact",
-      name: values.name,
-      email: values.email,
-      topic: values.topic ?? "",
-      message: values.message,
-      "bot-field": values.botField ?? "",
-    }).toString()
-
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
       })
 
       if (!response.ok) {
@@ -115,6 +106,16 @@ export function ContactDrawer() {
     }
   }
 
+  useEffect(() => {
+    if (status === "success" || status === "error") {
+      const timeout = setTimeout(() => {
+        setStatus("idle")
+      }, 5000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [status])
+
   return (
     <Drawer direction="bottom">
       <DrawerTrigger asChild>
@@ -122,7 +123,7 @@ export function ContactDrawer() {
           Get In Touch
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="data-[vaul-drawer-direction=bottom]:max-h-[50vh] data-[vaul-drawer-direction=top]:max-h-[50vh]">
+      <DrawerContent className="data-[vaul-drawer-direction=bottom]:h-dvh data-[vaul-drawer-direction=bottom]:max-h-dvh data-[vaul-drawer-direction=top]:h-dvh data-[vaul-drawer-direction=top]:max-h-dvh md:data-[vaul-drawer-direction=bottom]:h-auto md:data-[vaul-drawer-direction=bottom]:max-h-[60vh] md:data-[vaul-drawer-direction=top]:h-auto md:data-[vaul-drawer-direction=top]:max-h-[60vh]">
         <DrawerHeader>
           <DrawerTitle>Get in touch</DrawerTitle>
           <DrawerDescription>
@@ -130,14 +131,11 @@ export function ContactDrawer() {
           </DrawerDescription>
         </DrawerHeader>
         <form
-          className="no-scrollbar space-y-4 overflow-y-auto px-4 pb-4"
+          className="no-scrollbar flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-6 pb-6"
           name="contact"
           method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <input type="hidden" name="form-name" value="contact" />
           <label className="sr-only">
             Don’t fill this out if you’re human:
             <input tabIndex={-1} autoComplete="off" {...register("botField")} name="bot-field" />
@@ -158,7 +156,7 @@ export function ContactDrawer() {
           <Field>
             <FieldLabel>Full name</FieldLabel>
             <FieldContent>
-              <Input placeholder="Ulan Z." {...register("name")} aria-invalid={!!errors.name} />
+              <Input placeholder="John Doe" {...register("name")} aria-invalid={!!errors.name} />
               {errors.name && (
                 <FieldDescription className="text-destructive">
                   {errors.name.message}
@@ -172,7 +170,7 @@ export function ContactDrawer() {
             <FieldContent>
               <Input
                 type="email"
-                placeholder="zheksha@gmail.com"
+                placeholder="john.doe@example.com"
                 {...register("email")}
                 aria-invalid={!!errors.email}
               />
@@ -189,7 +187,7 @@ export function ContactDrawer() {
             <FieldContent>
               <select
                 {...register("topic")}
-                className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-8 w-full rounded-none border bg-transparent px-2.5 text-xs transition-colors focus-visible:ring-1"
+                className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-none border bg-transparent px-3 text-xs transition-colors focus-visible:ring-1"
               >
                 <option value="">Select a topic</option>
                 {TOPIC_OPTIONS.map((topic) => (
@@ -208,7 +206,7 @@ export function ContactDrawer() {
             </div>
             <FieldContent>
               <Textarea
-                rows={6}
+                rows={7}
                 placeholder="What would you like to build together?"
                 {...register("message")}
                 aria-invalid={!!errors.message}
@@ -221,11 +219,11 @@ export function ContactDrawer() {
             </FieldContent>
           </Field>
 
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             By sending this message, you agree that I may store your email to reply.
           </p>
 
-          <DrawerFooter className="px-0">
+          <DrawerFooter className="mt-auto px-0">
             <Button type="submit" disabled={status === "submitting"}>
               {status === "submitting" ? "Sending..." : "Send message"}
             </Button>
