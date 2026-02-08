@@ -17,41 +17,13 @@ function jsonResponse(statusCode: number, body: Record<string, unknown>) {
 }
 
 function isAllowedOrigin(origin: string | undefined, headers: Record<string, string | undefined>) {
+  if (process.env.NODE_ENV !== "production") return true
   if (!origin) return true
-  if (process.env.NETLIFY_DEV === "true" || process.env.NODE_ENV !== "production") {
-    return origin.startsWith("http://localhost:") || origin.startsWith("http://127.0.0.1:")
-  }
 
-  const allowed = [
-    process.env.URL,
-    process.env.DEPLOY_PRIME_URL,
-    process.env.DEPLOY_URL,
-    "https://zheksha.com",
-    "https://www.zheksha.com",
-  ].filter(Boolean) as string[]
-
-  const hostHeader = headers["x-forwarded-host"] || headers.host
   const originHost = new URL(origin).host.replace(/^www\./, "")
-  if (hostHeader) {
-    const requestHost = hostHeader.replace(/^www\./, "")
-    if (originHost === requestHost) {
-      return true
-    }
-  }
-  if (hostHeader) {
-    allowed.push(`https://${hostHeader}`)
-  }
+  const requestHost = (headers["x-forwarded-host"] || headers.host || "").replace(/^www\./, "")
 
-  if (allowed.length === 0) return true
-
-  return allowed.some((allowedOrigin) => {
-    try {
-      const allowedHost = new URL(allowedOrigin).host.replace(/^www\./, "")
-      return originHost === allowedHost
-    } catch {
-      return false
-    }
-  })
+  return originHost === requestHost
 }
 
 function isValidEmail(value: string) {
@@ -89,7 +61,6 @@ async function sendTelegramMessage(payload: ContactPayload) {
     throw new Error("Failed to send Telegram message.")
   }
 }
-
 
 export const handler = async (event: {
   httpMethod: string
