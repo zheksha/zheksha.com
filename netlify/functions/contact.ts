@@ -27,7 +27,16 @@ function isAllowedOrigin(origin: string | undefined) {
     process.env.DEPLOY_PRIME_URL,
     process.env.DEPLOY_URL,
   ].filter(Boolean) as string[]
-  return allowed.some((allowedOrigin) => origin.startsWith(allowedOrigin))
+
+  const originHost = new URL(origin).host.replace(/^www\./, "")
+  return allowed.some((allowedOrigin) => {
+    try {
+      const allowedHost = new URL(allowedOrigin).host.replace(/^www\./, "")
+      return originHost === allowedHost
+    } catch {
+      return false
+    }
+  })
 }
 
 function isValidEmail(value: string) {
