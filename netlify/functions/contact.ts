@@ -16,7 +16,7 @@ function jsonResponse(statusCode: number, body: Record<string, unknown>) {
   }
 }
 
-function isAllowedOrigin(origin: string | undefined) {
+function isAllowedOrigin(origin: string | undefined, headers: Record<string, string | undefined>) {
   if (!origin) return true
   if (process.env.NETLIFY_DEV === "true" || process.env.NODE_ENV !== "production") {
     return origin.startsWith("http://localhost:") || origin.startsWith("http://127.0.0.1:")
@@ -27,6 +27,13 @@ function isAllowedOrigin(origin: string | undefined) {
     process.env.DEPLOY_PRIME_URL,
     process.env.DEPLOY_URL,
   ].filter(Boolean) as string[]
+
+  const hostHeader = headers["x-forwarded-host"] || headers.host
+  if (hostHeader) {
+    allowed.push(`https://${hostHeader}`)
+  }
+
+  if (allowed.length === 0) return true
 
   const originHost = new URL(origin).host.replace(/^www\./, "")
   return allowed.some((allowedOrigin) => {
@@ -85,7 +92,7 @@ export const handler = async (event: {
     return jsonResponse(405, { error: "Method not allowed." })
   }
 
-  if (!isAllowedOrigin(event.headers.origin)) {
+  if (!isAllowedOrigin(event.headers.origin, event.headers)) {
     return jsonResponse(403, { error: "Forbidden origin." })
   }
 
