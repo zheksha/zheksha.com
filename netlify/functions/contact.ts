@@ -26,16 +26,24 @@ function isAllowedOrigin(origin: string | undefined, headers: Record<string, str
     process.env.URL,
     process.env.DEPLOY_PRIME_URL,
     process.env.DEPLOY_URL,
+    "https://zheksha.com",
+    "https://www.zheksha.com",
   ].filter(Boolean) as string[]
 
   const hostHeader = headers["x-forwarded-host"] || headers.host
+  const originHost = new URL(origin).host.replace(/^www\./, "")
+  if (hostHeader) {
+    const requestHost = hostHeader.replace(/^www\./, "")
+    if (originHost === requestHost) {
+      return true
+    }
+  }
   if (hostHeader) {
     allowed.push(`https://${hostHeader}`)
   }
 
   if (allowed.length === 0) return true
 
-  const originHost = new URL(origin).host.replace(/^www\./, "")
   return allowed.some((allowedOrigin) => {
     try {
       const allowedHost = new URL(allowedOrigin).host.replace(/^www\./, "")
