@@ -12,21 +12,18 @@ function Header({ className, ...props }: HeaderProps) {
       )}
       {...props}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3">
         <div className="flex flex-col leading-tight">
-          <span className="text-md font-semibold tracking-wide">ULAN Z.</span>
-          <span className="text-sm text-muted-foreground">dev</span>
+          <span className="text-sm font-bold tracking-widest uppercase">Ulan Z.</span>
+          <span className="text-xs text-muted-foreground">Senior UI Engineer</span>
         </div>
         <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-          {/* <a className="hover:text-foreground transition-colors" href="#work">
-            Work
+          <a className="hidden sm:block hover:text-foreground transition-colors" href="#experience">
+            Experience
           </a>
-          <a className="hover:text-foreground transition-colors" href="#about">
+          <a className="hidden sm:block hover:text-foreground transition-colors" href="#summary">
             About
           </a>
-          <a className="hover:text-foreground transition-colors" href="#contact">
-            Contact
-          </a> */}
           <ModeToggle />
         </nav>
       </div>

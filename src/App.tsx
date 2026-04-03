@@ -41,25 +41,25 @@ export function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <Header />
-        <main className="flex-1 overflow-hidden py-1">
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-3 px-6 py-2 md:grid-cols-4">
-            <aside className="md:col-span-1 md:sticky ">
+        <main className="flex-1 overflow-hidden">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 px-6 py-6 md:grid-cols-4">
+            <aside className="md:col-span-1 md:sticky md:top-20 md:self-start">
               <ProfileCard
                 name="Ulan Z."
+                title="Senior UI Engineer"
                 email="zheksha@gmail.com"
                 linkedInUrl="https://www.linkedin.com/in/zheksha/"
                 githubUrl="https://github.com/zheksha"
-                imageUrl="https://media.licdn.com/dms/image/v2/C5603AQHFYmtLd6eCrw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1616700061492?e=1770854400&v=beta&t=v2kzt6OltSRMivgRC1tZ3fonYMntiWsNu5F2MmdyvQ4"
               />
             </aside>
-            <section className="md:col-span-3 border-y">
-              <div ref={scrollWrapperRef} className="max-h-[calc(100dvh-11.75rem)] overflow-hidden">
-                <div ref={scrollContentRef} className="space-y-3">
+            <div className="md:col-span-3">
+              <div ref={scrollWrapperRef} className="max-h-[calc(100dvh-8rem)] overflow-hidden">
+                <div ref={scrollContentRef} className="divide-y">
                   <Summary />
                   <Experience />
                 </div>
               </div>
-            </section>
+            </div>
           </div>
         </main>
         <Footer />

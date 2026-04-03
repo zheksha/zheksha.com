@@ -18,79 +18,96 @@ function formatDateRange(start: string, end: string) {
 
 export function Experience() {
   return (
-    <Section title="Experience" subtitle="Work & Impact" footer="View All">
-      <div className="space-y-8">
+    <Section title="Experience" subtitle="Work & Impact">
+      <div className="space-y-6">
         {resumeData.experience.map((item, index) => {
-          const showLine = index < resumeData.experience.length
+          const isCurrent = item.endDate === "Present"
+          const showLine = index < resumeData.experience.length - 1
 
           return (
             <div key={item.id} className="relative">
-              {showLine && (
-                <div className="absolute left-6 top-12 bottom-0 w-px bg-border transition-colors group-hover:bg-muted-foreground/40" />
-              )}
-              <div className="absolute left-6 top-10 -translate-x-1/2 h-3 w-3 rounded-full border-4 border-background bg-foreground" />
+              {showLine && <div className="absolute left-6 top-12 bottom-0 w-px bg-border" />}
+              <div
+                className={`absolute left-6 top-10 -translate-x-1/2 h-3 w-3 rounded-full border-2 border-background ${
+                  isCurrent
+                    ? "bg-blue-500 shadow-[0_0_0_3px_rgba(59,130,246,0.2)]"
+                    : "bg-muted-foreground/50"
+                }`}
+              />
               <div className="ml-12">
-                <Card className="border-border/60 bg-card/80 p-6 transition-colors duration-200 hover:border-foreground/50">
+                <Card
+                  className={`p-5 transition-colors duration-200 ${
+                    isCurrent
+                      ? "border-blue-500/30 bg-blue-500/5 hover:border-blue-500/50"
+                      : "border-border/60 bg-card/80 hover:border-foreground/30"
+                  }`}
+                >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-3">
+                    <div className="space-y-1.5 min-w-0">
+                      <div className="flex items-center gap-2.5 flex-wrap">
                         {item.logo && (
                           <img
                             src={item.logo}
                             alt={`${item.company} logo`}
-                            className="h-6 rounded-xs border border-border/60 bg-background object-contain"
+                            className="h-5 rounded-sm border border-border/60 bg-background object-contain"
                           />
                         )}
-                        <h3 className="text-lg font-semibold text-foreground">{item.company}</h3>
+                        <h3 className="text-base font-semibold text-foreground">{item.company}</h3>
+                        {isCurrent && (
+                          <Badge className="rounded-full bg-blue-500/15 text-blue-400 border-blue-500/30 text-[10px] px-2 py-0 h-4">
+                            Current
+                          </Badge>
+                        )}
                       </div>
-                      <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm">
                         <span className="font-medium text-foreground">{item.title}</span>
-                        <span className="text-muted-foreground/60">•</span>
-                        <span>{formatDateRange(item.startDate, item.endDate)}</span>
+                        <span className="text-muted-foreground/40">·</span>
+                        <span className="text-muted-foreground">
+                          {formatDateRange(item.startDate, item.endDate)}
+                        </span>
+                        <span className="text-muted-foreground/40">·</span>
+                        <span className="text-muted-foreground">{item.employmentType}</span>
                       </div>
+
                       {item.location && (
-                        <div className="text-sm text-muted-foreground">
-                          {item.location}
-                          {item.employmentType ? ` · ${item.employmentType}` : ""}
-                        </div>
+                        <p className="text-xs text-muted-foreground/70">{item.location}</p>
                       )}
                     </div>
                   </div>
 
                   {item.achievements.length > 0 && (
-                    <div className="mt-4 space-y-3">
-                      <ul className="list-disc space-y-2 pl-4 text-sm text-muted-foreground">
-                        {item.achievements.map((achievement, achievementIndex) => (
-                          <li key={`${item.id}-${achievementIndex}`} className="pl-1">
-                            {achievement}
-                          </li>
-                        ))}
-                        {item.highlights && item.highlights.length > 0 && (
-                          <li className="pl-1">
-                            {item.hightlightsMessage ?? "The most prominent work includes:"}
-                            <ul className="mt-2 list-[circle] space-y-2 pl-6">
-                              {item.highlights.map((highlight) => (
-                                <li key={highlight.name}>
-                                  <span className="font-medium text-foreground">
-                                    {highlight.name}
-                                  </span>
-                                  {highlight.description ? `, ${highlight.description}` : ""}
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        )}
-                      </ul>
-                    </div>
+                    <ul className="mt-4 list-disc space-y-1.5 pl-4 text-sm text-muted-foreground marker:text-muted-foreground/40">
+                      {item.achievements.map((achievement, achievementIndex) => (
+                        <li key={`${item.id}-${achievementIndex}`} className="pl-1">
+                          {achievement}
+                        </li>
+                      ))}
+                      {item.highlights && item.highlights.length > 0 && (
+                        <li className="pl-1">
+                          {item.hightlightsMessage ?? "The most prominent work includes:"}
+                          <ul className="mt-2 list-[circle] space-y-1.5 pl-5">
+                            {item.highlights.map((highlight) => (
+                              <li key={highlight.name}>
+                                <span className="font-medium text-foreground/90">
+                                  {highlight.name}
+                                </span>
+                                {highlight.description ? ` — ${highlight.description}` : ""}
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                      )}
+                    </ul>
                   )}
 
                   {item.technologies.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-4 flex flex-wrap gap-1.5">
                       {item.technologies.map((tech) => (
                         <Badge
                           key={`${item.id}-${tech}`}
                           variant="secondary"
-                          className="rounded-full"
+                          className="rounded-full text-xs px-2.5 py-0.5"
                         >
                           {tech}
                         </Badge>
