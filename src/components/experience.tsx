@@ -1,6 +1,4 @@
 import { Section } from "@/components/section"
-import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
 import resumeData from "@/mock-data/resume-data"
 
 function formatMonthYear(value: string) {
@@ -18,103 +16,129 @@ function formatDateRange(start: string, end: string) {
 
 export function Experience() {
   return (
-    <Section title="Experience" subtitle="Work & Impact">
-      <div className="space-y-6">
+    <Section title="Experience" subtitle="Work &amp; Impact" id="experience">
+      <div className="relative space-y-3">
         {resumeData.experience.map((item, index) => {
           const isCurrent = item.endDate === "Present"
-          const showLine = index < resumeData.experience.length - 1
+          const isLast = index === resumeData.experience.length - 1
 
           return (
-            <div key={item.id} className="relative">
-              {showLine && <div className="absolute left-6 top-12 bottom-0 w-px bg-border" />}
-              <div
-                className={`absolute left-6 top-10 -translate-x-1/2 h-3 w-3 rounded-full border-2 border-background ${
-                  isCurrent
-                    ? "bg-blue-500 shadow-[0_0_0_3px_rgba(59,130,246,0.2)]"
-                    : "bg-muted-foreground/50"
-                }`}
-              />
-              <div className="ml-12">
-                <Card
-                  className={`p-5 transition-colors duration-200 ${
+            <div key={item.id} className="relative flex gap-4">
+              {/* Timeline spine */}
+              <div className="flex flex-col items-center">
+                <div
+                  className={[
+                    "mt-5 h-2.5 w-2.5 shrink-0 rounded-full border border-background z-10",
                     isCurrent
-                      ? "border-blue-500/30 bg-blue-500/5 hover:border-blue-500/50"
-                      : "border-border/60 bg-card/80 hover:border-foreground/30"
-                  }`}
+                      ? "bg-accent shadow-[0_0_8px_2px_rgba(0,137,255,0.25)]"
+                      : "bg-foreground/20",
+                  ].join(" ")}
+                />
+                {!isLast && (
+                  <div className="mt-1 flex-1 w-px bg-gradient-to-b from-border to-transparent min-h-4" />
+                )}
+              </div>
+
+              {/* Card */}
+              <div className="flex-1 pb-1">
+                <div
+                  className={[
+                    "rounded-sm border p-4 transition-all duration-200",
+                    isCurrent
+                      ? "bg-accent/[0.04] border-accent/20 hover:border-accent/35"
+                      : "bg-card border-border hover:border-foreground/20",
+                  ].join(" ")}
                 >
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="space-y-1.5 min-w-0">
-                      <div className="flex items-center gap-2.5 flex-wrap">
+                  {/* Company + role row */}
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="space-y-1 min-w-0">
+                      {/* Company line */}
+                      <div className="flex items-center gap-2 flex-wrap">
                         {item.logo && (
                           <img
                             src={item.logo}
                             alt={`${item.company} logo`}
-                            className="h-5 rounded-sm border border-border/60 bg-background object-contain"
+                            className="h-4 rounded-sm border border-border bg-muted/30 object-contain"
                           />
                         )}
-                        <h3 className="text-base font-semibold text-foreground">{item.company}</h3>
+                        <span className="font-sans text-sm font-medium text-foreground">
+                          {item.company}
+                        </span>
                         {isCurrent && (
-                          <Badge className="rounded-full bg-blue-500/15 text-blue-400 border-blue-500/30 text-[10px] px-2 py-0 h-4">
+                          <span className="inline-flex items-center rounded-sm border border-accent/30 bg-accent/10 px-1.5 py-0 font-mono text-[9px] uppercase tracking-wider text-accent">
                             Current
-                          </Badge>
+                          </span>
                         )}
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm">
-                        <span className="font-medium text-foreground">{item.title}</span>
-                        <span className="text-muted-foreground/40">·</span>
-                        <span className="text-muted-foreground">
+                      {/* Role + date + type */}
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                        <span className="font-sans text-sm text-foreground/90">{item.title}</span>
+                        <span className="text-foreground/20">·</span>
+                        <span className="font-mono text-[11px] text-muted-foreground">
                           {formatDateRange(item.startDate, item.endDate)}
                         </span>
-                        <span className="text-muted-foreground/40">·</span>
-                        <span className="text-muted-foreground">{item.employmentType}</span>
+                        <span className="text-foreground/20">·</span>
+                        <span className="font-mono text-[11px] text-muted-foreground">
+                          {item.employmentType}
+                        </span>
                       </div>
 
                       {item.location && (
-                        <p className="text-xs text-muted-foreground/70">{item.location}</p>
+                        <p className="font-mono text-[10px] text-muted-foreground/60">
+                          {item.location}
+                        </p>
                       )}
                     </div>
                   </div>
 
+                  {/* Achievements */}
                   {item.achievements.length > 0 && (
-                    <ul className="mt-4 list-disc space-y-1.5 pl-4 text-sm text-muted-foreground marker:text-muted-foreground/40">
-                      {item.achievements.map((achievement, achievementIndex) => (
-                        <li key={`${item.id}-${achievementIndex}`} className="pl-1">
-                          {achievement}
+                    <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                      {item.achievements.map((achievement, i) => (
+                        <li key={`${item.id}-ach-${i}`} className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-foreground/20" />
+                          <span>{achievement}</span>
                         </li>
                       ))}
                       {item.highlights && item.highlights.length > 0 && (
-                        <li className="pl-1">
-                          {item.hightlightsMessage ?? "The most prominent work includes:"}
-                          <ul className="mt-2 list-[circle] space-y-1.5 pl-5">
-                            {item.highlights.map((highlight) => (
-                              <li key={highlight.name}>
-                                <span className="font-medium text-foreground/90">
-                                  {highlight.name}
-                                </span>
-                                {highlight.description ? ` — ${highlight.description}` : ""}
-                              </li>
-                            ))}
-                          </ul>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-foreground/20" />
+                          <span>
+                            {item.hightlightsMessage ?? "The most prominent work includes:"}
+                            <ul className="mt-2 space-y-1.5">
+                              {item.highlights.map((highlight) => (
+                                <li key={highlight.name} className="flex gap-2">
+                                  <span className="mt-1.5 h-0.5 w-0.5 shrink-0 rounded-full bg-foreground/15" />
+                                  <span>
+                                    <span className="font-medium text-foreground/80">
+                                      {highlight.name}
+                                    </span>
+                                    {highlight.description ? ` — ${highlight.description}` : ""}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </span>
                         </li>
                       )}
                     </ul>
                   )}
 
+                  {/* Tech stack */}
                   {item.technologies.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <div className="mt-3 flex flex-wrap gap-1.5">
                       {item.technologies.map((tech) => (
-                        <Badge
+                        <span
                           key={`${item.id}-${tech}`}
-                          variant="secondary"
-                          className="rounded-full text-xs px-2.5 py-0.5"
+                          className="inline-flex items-center rounded-sm border border-border bg-muted/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground hover:border-foreground/20 hover:text-foreground/80 transition-colors"
                         >
                           {tech}
-                        </Badge>
+                        </span>
                       ))}
                     </div>
                   )}
-                </Card>
+                </div>
               </div>
             </div>
           )

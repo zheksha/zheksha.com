@@ -4,7 +4,9 @@ import resumeData from "@/mock-data/resume-data"
 function Summary() {
   return (
     <Section title="About" id="summary">
-      <p className="text-sm text-muted-foreground leading-relaxed px-4">{resumeData.objective}</p>
+      <p className="font-sans text-sm leading-relaxed text-muted-foreground max-w-2xl">
+        {resumeData.objective}
+      </p>
     </Section>
   )
 }

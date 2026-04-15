@@ -11,18 +11,26 @@ type SectionProps = {
 
 function Section({ title, subtitle, footer, id, className, children }: SectionProps) {
   return (
-    <section id={id} className={cn("w-full py-6", className)}>
-      <div className="px-4 mb-4">
-        <div className="flex items-baseline gap-2">
-          <h2 className="text-base font-semibold tracking-tight">{title}</h2>
+    <section id={id} className={cn("w-full py-8", className)}>
+      {/* Section header */}
+      <div className="mb-6">
+        <div className="flex items-baseline gap-3">
+          <h2 className="font-sans text-sm font-medium uppercase tracking-[0.12em] text-foreground">
+            {title}
+          </h2>
           {subtitle && (
-            <span className="text-xs text-muted-foreground font-normal">{subtitle}</span>
+            <span className="font-mono text-[10px] tracking-wider text-muted-foreground">
+              {subtitle}
+            </span>
           )}
         </div>
-        <div className="mt-1 h-px w-8 bg-primary/40 rounded-full" />
+        {/* Accent underline */}
+        <div className="mt-2 h-px w-full bg-gradient-to-r from-accent/50 via-border to-transparent" />
       </div>
-      <div className="px-4">{children}</div>
-      {footer && <div className="px-4 mt-4 text-xs text-muted-foreground">{footer}</div>}
+
+      <div>{children}</div>
+
+      {footer && <div className="mt-4 font-mono text-[10px] text-muted-foreground">{footer}</div>}
     </section>
   )
 }

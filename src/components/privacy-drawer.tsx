@@ -14,7 +14,10 @@ export function PrivacyDrawer() {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <a className="hover:text-foreground transition-colors" href="#privacy">
+        <a
+          className="font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+          href="#privacy"
+        >
           Privacy Policy
         </a>
       </DrawerTrigger>

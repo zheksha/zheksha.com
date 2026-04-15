@@ -7,21 +7,35 @@ function Header({ className, ...props }: HeaderProps) {
   return (
     <header
       className={cn(
-        "bg-background/80 text-foreground sticky top-0 z-50 w-full border-b backdrop-blur",
+        "sticky top-0 z-50 w-full backdrop-blur-md",
+        "bg-background/90 border-b border-border",
         className,
       )}
       {...props}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3">
-        <div className="flex flex-col leading-tight">
-          <span className="text-sm font-bold tracking-widest uppercase">Ulan Z.</span>
-          <span className="text-xs text-muted-foreground">Senior UI Engineer</span>
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 md:px-6">
+        {/* Wordmark */}
+        <div className="flex flex-col leading-none">
+          <span className="font-sans text-sm font-medium tracking-[0.15em] uppercase text-foreground">
+            Ulan Z.
+          </span>
+          <span className="font-mono text-[10px] tracking-wider text-muted-foreground mt-0.5">
+            Senior UI Engineer
+          </span>
         </div>
-        <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a className="hidden sm:block hover:text-foreground transition-colors" href="#experience">
+
+        {/* Nav */}
+        <nav className="flex items-center gap-6">
+          <a
+            className="hidden sm:block font-sans text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+            href="#experience"
+          >
             Experience
           </a>
-          <a className="hidden sm:block hover:text-foreground transition-colors" href="#summary">
+          <a
+            className="hidden sm:block font-sans text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+            href="#summary"
+          >
             About
           </a>
           <ModeToggle />

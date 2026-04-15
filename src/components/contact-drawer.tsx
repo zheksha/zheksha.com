@@ -119,7 +119,10 @@ export function ContactDrawer() {
   return (
     <Drawer direction="bottom">
       <DrawerTrigger asChild>
-        <Button variant="outline" className="capitalize">
+        <Button
+          variant="outline"
+          className="w-full border-accent/30 bg-accent/[0.06] text-foreground hover:bg-accent/[0.12] hover:border-accent/50 transition-colors font-mono text-[11px] tracking-wide uppercase"
+        >
           Get In Touch
         </Button>
       </DrawerTrigger>
