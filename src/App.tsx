@@ -11,7 +11,9 @@ import { ThemeProvider } from "./components/theme-provider/theme-provider"
 
 export function App() {
   useEffect(() => {
-    // Window-level Lenis: smooth wheel on desktop, native touch on mobile
+    // Smooth wheel on desktop only — let mobile use native touch scroll
+    if (window.matchMedia("(pointer: coarse)").matches) return
+
     const lenis = new Lenis({ smoothWheel: true })
 
     let rafId = 0
