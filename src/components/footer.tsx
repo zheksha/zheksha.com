@@ -11,7 +11,7 @@ function Footer({ className, ...props }: FooterProps) {
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-5 md:px-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-0.5">
           <p className="font-mono text-[11px] text-muted-foreground">
-            © {new Date().getFullYear()} Ulan Zhekshenbekov
+            © {new Date().getFullYear()} Ulan Z. All rights reserved.
           </p>
           <Version showEnv={true} className="font-mono text-[10px] text-muted-foreground/40" />
         </div>
