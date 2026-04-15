@@ -134,7 +134,7 @@ export function ContactDrawer() {
           </DrawerDescription>
         </DrawerHeader>
         <form
-          className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-6 pb-2"
+          className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-6 pb-2 scroll-smooth"
           name="contact"
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
@@ -191,7 +191,7 @@ export function ContactDrawer() {
               <FieldContent>
                 <select
                   {...register("topic")}
-                  className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-none border bg-transparent px-3 text-xs transition-colors focus-visible:ring-1"
+                  className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-none border bg-transparent px-3 text-base md:text-xs transition-colors focus-visible:ring-1"
                 >
                   <option value="">Select a topic</option>
                   {TOPIC_OPTIONS.map((topic) => (
