@@ -1,8 +1,9 @@
 import { Github, Linkedin, Mail, MapPin } from "lucide-react"
 
-import { ContactDrawer } from "./contact-drawer"
-import { Badge } from "./ui/badge"
 import resumeData from "@/mock-data/resume-data"
+
+import { Badge } from "./ui/badge"
+import { ContactDrawer } from "./contact-drawer"
 
 type ProfileCardProps = {
   name: string

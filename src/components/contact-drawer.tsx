@@ -126,15 +126,15 @@ export function ContactDrawer() {
           Get In Touch
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="data-[vaul-drawer-direction=bottom]:h-dvh data-[vaul-drawer-direction=bottom]:max-h-dvh data-[vaul-drawer-direction=top]:h-dvh data-[vaul-drawer-direction=top]:max-h-dvh md:data-[vaul-drawer-direction=bottom]:h-auto md:data-[vaul-drawer-direction=bottom]:max-h-[60vh] md:data-[vaul-drawer-direction=top]:h-auto md:data-[vaul-drawer-direction=top]:max-h-[60vh]">
-        <DrawerHeader>
+      <DrawerContent className="flex flex-col data-[vaul-drawer-direction=bottom]:max-h-[92dvh] md:data-[vaul-drawer-direction=bottom]:max-h-[60vh]">
+        <DrawerHeader className="shrink-0">
           <DrawerTitle>Get in touch</DrawerTitle>
           <DrawerDescription>
             Typically replies within 24 hours. Your email is safe.
           </DrawerDescription>
         </DrawerHeader>
         <form
-          className="no-scrollbar flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-6 pb-6"
+          className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-6 pb-2"
           name="contact"
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
@@ -144,97 +144,103 @@ export function ContactDrawer() {
             <input tabIndex={-1} autoComplete="off" {...register("botField")} name="bot-field" />
           </label>
 
-          {status === "success" && (
-            <div className="rounded-none border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-300">
-              Thanks! Your message is on its way. I’ll reply soon.
-            </div>
-          )}
+          <div className="flex flex-col gap-5">
+            {status === "success" && (
+              <div className="rounded-none border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-300">
+                Thanks! Your message is on its way. I’ll reply soon.
+              </div>
+            )}
 
-          {status === "error" && (
-            <div className="rounded-none border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
-              Something went wrong. Please try again.
-            </div>
-          )}
+            {status === "error" && (
+              <div className="rounded-none border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
+                Something went wrong. Please try again.
+              </div>
+            )}
 
-          <Field>
-            <FieldLabel>Full name</FieldLabel>
-            <FieldContent>
-              <Input placeholder="John Doe" {...register("name")} aria-invalid={!!errors.name} />
-              {errors.name && (
-                <FieldDescription className="text-destructive">
-                  {errors.name.message}
-                </FieldDescription>
-              )}
-            </FieldContent>
-          </Field>
+            <Field>
+              <FieldLabel>Full name</FieldLabel>
+              <FieldContent>
+                <Input placeholder="John Doe" {...register("name")} aria-invalid={!!errors.name} />
+                {errors.name && (
+                  <FieldDescription className="text-destructive">
+                    {errors.name.message}
+                  </FieldDescription>
+                )}
+              </FieldContent>
+            </Field>
 
-          <Field>
-            <FieldLabel>Email</FieldLabel>
-            <FieldContent>
-              <Input
-                type="email"
-                placeholder="john.doe@example.com"
-                {...register("email")}
-                aria-invalid={!!errors.email}
-              />
-              {errors.email && (
-                <FieldDescription className="text-destructive">
-                  {errors.email.message}
-                </FieldDescription>
-              )}
-            </FieldContent>
-          </Field>
+            <Field>
+              <FieldLabel>Email</FieldLabel>
+              <FieldContent>
+                <Input
+                  type="email"
+                  placeholder="john.doe@example.com"
+                  {...register("email")}
+                  aria-invalid={!!errors.email}
+                />
+                {errors.email && (
+                  <FieldDescription className="text-destructive">
+                    {errors.email.message}
+                  </FieldDescription>
+                )}
+              </FieldContent>
+            </Field>
 
-          <Field>
-            <FieldLabel>Topic (optional)</FieldLabel>
-            <FieldContent>
-              <select
-                {...register("topic")}
-                className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-none border bg-transparent px-3 text-xs transition-colors focus-visible:ring-1"
-              >
-                <option value="">Select a topic</option>
-                {TOPIC_OPTIONS.map((topic) => (
-                  <option key={topic} value={topic}>
-                    {topic}
-                  </option>
-                ))}
-              </select>
-            </FieldContent>
-          </Field>
+            <Field>
+              <FieldLabel>Topic (optional)</FieldLabel>
+              <FieldContent>
+                <select
+                  {...register("topic")}
+                  className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-none border bg-transparent px-3 text-xs transition-colors focus-visible:ring-1"
+                >
+                  <option value="">Select a topic</option>
+                  {TOPIC_OPTIONS.map((topic) => (
+                    <option key={topic} value={topic}>
+                      {topic}
+                    </option>
+                  ))}
+                </select>
+              </FieldContent>
+            </Field>
 
-          <Field>
-            <div className="flex items-center justify-between">
-              <FieldLabel>Message</FieldLabel>
-              <span className="text-[10px] text-muted-foreground">{characterCount}/2000</span>
-            </div>
-            <FieldContent>
-              <Textarea
-                rows={7}
-                placeholder="What would you like to build together?"
-                {...register("message")}
-                aria-invalid={!!errors.message}
-              />
-              {errors.message && (
-                <FieldDescription className="text-destructive">
-                  {errors.message.message}
-                </FieldDescription>
-              )}
-            </FieldContent>
-          </Field>
+            <Field>
+              <div className="flex items-center justify-between">
+                <FieldLabel>Message</FieldLabel>
+                <span className="text-[10px] text-muted-foreground">{characterCount}/2000</span>
+              </div>
+              <FieldContent>
+                <Textarea
+                  rows={4}
+                  placeholder="What would you like to build together?"
+                  {...register("message")}
+                  aria-invalid={!!errors.message}
+                />
+                {errors.message && (
+                  <FieldDescription className="text-destructive">
+                    {errors.message.message}
+                  </FieldDescription>
+                )}
+              </FieldContent>
+            </Field>
 
-          <p className="text-xs text-muted-foreground">
-            By sending this message, you agree that I may store your email to reply.
-          </p>
-
-          <DrawerFooter className="mt-auto px-0">
-            <Button type="submit" disabled={status === "submitting"}>
-              {status === "submitting" ? "Sending..." : "Send message"}
-            </Button>
-            <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
-            </DrawerClose>
-          </DrawerFooter>
+            <p className="text-xs text-muted-foreground">
+              By sending this message, you agree that I may store your email to reply.
+            </p>
+          </div>
         </form>
+        <DrawerFooter className="shrink-0">
+          <Button
+            type="submit"
+            form="contact"
+            disabled={status === "submitting"}
+            onClick={handleSubmit(onSubmit)}
+          >
+            {status === "submitting" ? "Sending..." : "Send message"}
+          </Button>
+          <DrawerClose asChild>
+            <Button variant="outline">Close</Button>
+          </DrawerClose>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )
